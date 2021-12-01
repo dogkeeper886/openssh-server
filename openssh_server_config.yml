@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  openssh_server.pub: |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDG+mmBIqGPVyWYozPmL9wTc3DaaBFqaJ05yfQtZdIk/pmMxp3X9FCvoZbsrTqCbLY3+Kc7YyIHUOvZ2HhT/yNcp2durpY25Wd7BY//BDY/Hp74cGXkORPWZqVha2XU/M40x/Uxj5bcRHRG8ZKirNCAdhyj8ZJHAUoiK11Vp8/htwcD7gFTvARj3VJRkCyacgF5rshst5dqbS3Apg40bMjQVfSgpnnte6zSMinDi3bn9DClxDvMl7XceQVgiPUZdQkxaieHZ0c9dGRdsq9ReIYQUKM2eESxhWtoOtkgyxggKoaK7jiyWIAIylYWVJjgHVYdKll5Z4xXxYLOPADnmD8f
+               Generated-by-Nova
+kind: ConfigMap
+metadata:
+  name: openssh-server-configmap
+  namespace: default
