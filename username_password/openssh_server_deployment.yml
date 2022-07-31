@@ -32,11 +32,10 @@ spec:
           value: 'true'
         - name: SUDO_ACCESS
           value: 'true'          
-        image: linuxserver/openssh-server
+        image: dogkeeper886/openssh-server
         imagePullPolicy: IfNotPresent
         name: openssh-server
         resources:
           limits:
             memory: 512Mi
             cpu: "1"
-

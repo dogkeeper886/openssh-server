@@ -10,6 +10,7 @@ spec:
     matchLabels:
       app: openssh-server
   template:
+    metadata:
       labels:
         app: openssh-server
     spec:
@@ -22,6 +23,10 @@ spec:
             configMapKeyRef:
               key: openssh_server.pub
               name: openssh-server-configmap
-        image: linuxserver/openssh-server:latest
+        image: dogkeeper886/openssh-server:latest
         imagePullPolicy: IfNotPresent
         name: openssh-server
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
