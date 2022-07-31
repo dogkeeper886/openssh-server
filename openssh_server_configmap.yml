@@ -1,8 +1,0 @@
-apiVersion: v1
-data:
-  ssh_config: |
-    HostKeyAlgorithms ssh-rsa,ssh-dss
-kind: ConfigMap
-metadata:
-  name: openssh-configmap
-  namespace: default
