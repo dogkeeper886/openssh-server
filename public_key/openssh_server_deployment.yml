@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: TZ
+          value: Asia/Taipei      
         - name: PGID
           value: "1000"      
         - name: USER_NAME
