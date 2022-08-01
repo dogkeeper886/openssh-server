@@ -2,32 +2,41 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: openssh-server
-  name: openssh-server
-  namespace: default
+    app: openssh-server-test
+  name: openssh-server-test
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: openssh-server
+      app: openssh-server-test
   template:
     metadata:
       labels:
-        app: openssh-server
+        app: openssh-server-test
     spec:
       containers:
       - env:
         - name: PGID
-          value: "1000"      
-        - name: USER_NAME
-          value: openssh
-        - name: PUBLIC_KEY
+          value: "1000"
+        - name: USER_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              key: openssh_server.pub
-              name: openssh-server-configmap
-        image: linuxserver/openssh-server:latest
+            secretKeyRef:
+              name: openssh-server-secret
+              key: USER_PASSWORD
+              optional: false
+        - name: USER_NAME
+          valueFrom:
+            secretKeyRef:
+              name: openssh-server-secret
+              key: USER_NAME
+              optional: false
+        - name: PASSWORD_ACCESS
+          value: 'true'
+        - name: SUDO_ACCESS
+          value: 'true'          
+        image: linuxserver/openssh-server
         imagePullPolicy: IfNotPresent
-        name: openssh-server
+        name: openssh-server-test
         resources:
           limits:
             memory: 512Mi
@@ -45,4 +54,4 @@ spec:
           name: openssh-server-configmap
           items:
             - key: ssh_config
-              path: ssh_config            
+              path: ssh_config

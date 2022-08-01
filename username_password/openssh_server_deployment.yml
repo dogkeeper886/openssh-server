@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: PGID
+          value: "1000"
         - name: USER_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -32,10 +34,24 @@ spec:
           value: 'true'
         - name: SUDO_ACCESS
           value: 'true'          
-        image: dogkeeper886/openssh-server
+        image: linuxserver/openssh-server
         imagePullPolicy: IfNotPresent
-        name: openssh-server
+        name: openssh-server-test
         resources:
           limits:
             memory: 512Mi
             cpu: "1"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config/ssh_host_keys/ssh_config
+          subPath: ssh_config
+          readOnly: true            
+      securityContext:
+          fsGroup: 1000
+      volumes:
+      - name: config-volume
+        configMap:
+          name: openssh-server-configmap
+          items:
+            - key: ssh_config
+              path: ssh_config
