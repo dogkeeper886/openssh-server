@@ -48,8 +48,12 @@ spec:
           mountPath: /config/ssh_host_keys/ssh_config
           subPath: ssh_config
           readOnly: true            
+        securityContext:
+          capabilities:
+            add:
+            - CAP_NET_RAW
       securityContext:
-          fsGroup: 1000
+        fsGroup: 1000
       volumes:
       - name: config-volume
         configMap:
