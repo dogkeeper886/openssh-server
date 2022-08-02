@@ -30,10 +30,6 @@ spec:
         image: linuxserver/openssh-server:latest
         imagePullPolicy: IfNotPresent
         name: openssh-server
-        resources:
-          limits:
-            memory: 512Mi
-            cpu: "1"
         volumeMounts:
         - name: config-volume
           mountPath: /config/ssh_host_keys/ssh_config
